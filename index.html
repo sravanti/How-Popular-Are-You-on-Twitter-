@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+ {% autoescape true %}
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -37,8 +38,7 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="/about.html">About</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -49,7 +49,11 @@
       <!-- Main jumbotron for a primary marketing message or call to action -->
       <div class="jumbotron">
         <h1>How Twitter popular are you?</h1>
-        <p>Simply enter your Twitter handle below and receive stats on your popularity in comparison to your friends!</p>
+        <p>Simply enter your Twitter handle below and see how popular you are! <br> Just for a benchmark... <br>
+        Sravanti (who created this website) has a popularity ranking of 120. <br>
+        Mindy Kaling has a popularity ranking of 525650. <br>
+        CNN has a popularity ranking of 1439550 <br>
+        Obviously, I need to figure out the scaling of this....</p>
         <p><a href="#" class="btn btn-primary btn-lg" role="button">How this works &raquo;</a></p>
       </div>
 
@@ -60,11 +64,13 @@
 
   <span class="input-group-addon">@</span>
                <form action="/sign" method="post">
+                   <span class="input-group-btn">
   <input type="text" class="form-control" placeholder="Username" name="content">
-              <span class="input-group-btn">
-        <input type="submit" class="btn btn-default">Enter</button>
+
+      <input type="submit" class="btn btn-default">Enter</button>
       </span>
                    </form>
+
 
 </div>
       </div>
@@ -74,22 +80,23 @@
         <h1>Stats:</h1>
             <div class="row" >
                 <div class="col-md-3"><h2>Followers to following ratio</h2>
-          <p><br><br>  </p></div>
+          <p><br><br> {{ friendRatio }}  </p></div>
                 <div class="col-md-3"><h2>Average favorites/tweet</h2>
-          <p><br><br>  </p></div>
+          <p><br><br> {{ avgFavs }}  </p></div>
                 <div class="col-md-3"><h2>Average RTs/tweet</h2>
-          <p><br><br>  </p></div>
+          <p><br><br> {{ avgRTs }} </p></div>
                 <div class="col-md-3"><h2>Number of mentions</h2>
-          <p><br><br>  </p></div>
+          <p><br><br> {{ numMentions }} </p></div>
 
 
     </div>
       </div>
 
         <div class="page-header">
-        <h1>Your Twitter popularity: 100!</h1>
+        <h1>Your Twitter popularity: {{ popsum }} </h1> <br><br>
+            </div>
 
-        <h1>Your Friends' Twitter popularities</h1>
+
 
       <footer>
         <p>&copy; Sravanti Tekumalla 2014</p>
@@ -109,4 +116,5 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
   <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
   </body>
+{% endautoescape %}
 </html>

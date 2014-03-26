@@ -1,9 +1,10 @@
 from __future__ import division
+from decimal import *
 __author__ = 'sravantitekumalla'
 
 
 import auth
-import cgi
+
 
 # == OAuth Authentication ==
 api = auth.api
@@ -19,6 +20,7 @@ class twitterAuth:
     numFollowers = 0
     numFollowing = 0
     numMentions = 0
+    popsum = 0
     username = ""
     results = ""
     name = ""
@@ -54,8 +56,24 @@ class twitterAuth:
     def getAverageFavs(self):
         return self.averageFavs
 
+    def getAverageRTs(self):
+        return self.averageRTs
 
-f = twitterAuth("stekumalla")
-print f.getFollowers()
+    def getFriendRatio(self):
+        return self.friendRatio
+
+    def getName(self):
+        return self.name
+
+    def popularity(self):
+        self.popsum += int(Decimal(self.numMentions)) * 10
+        self.popsum += int(Decimal(self.averageFavs)) * 100
+        self.popsum += int(Decimal(self.friendRatio)) * 100
+        return self.popsum
+
+
+
+
+
 
 
